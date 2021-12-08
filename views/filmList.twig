@@ -1,0 +1,23 @@
+<head>
+    <script language="javascript" src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+</head>
+
+<body>
+    <div class="container">
+        {% for item in data %}
+        <div class="row align-items-center">
+            <div class="col-sm">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="film.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{item.titre}} <span style="color: red">{{ item.nbrRes }} RS</span></h5>
+                        <p class="card-text">{{ item.description }}</p>
+                        <a href="/film/reserver/1" class="btn btn-primary" >Réserver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
