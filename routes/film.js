@@ -27,4 +27,29 @@ router.get('/reserver/:id', function(req, res, next) {
     });
 });
 
+router.get('/add', function(req, res, next) {
+    res.render("addFilm.twig");
+});
+
+router.post('/save', function(req, res, next) {
+    var film = new Film({
+        ref:req.body.ref,
+        titre:req.body.titre,
+        description:req.body.desc,
+        img:req.body.file
+    });
+    console.log('FILM',film);
+    film.save().then(function () {
+        res.redirect("/");
+    })
+});
+
+router.get('/delete/:ref', function(req, res, next) {
+    Film.find({'ref':req.params.ref},function (err, data) {
+        console.log('delete',req.params.ref);
+    }).deleteOne();
+    res.redirect("/");
+});
+
+
 module.exports = router;

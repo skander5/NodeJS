@@ -1,0 +1,50 @@
+<head>
+    <script language="javascript" src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <style>
+        .card {
+            margin: 0 auto; /* Added */
+            float: none; /* Added */
+            margin-bottom: 10px; /* Added */
+        }
+    </style>
+</head>
+
+<body>
+{% include 'header.html' %}
+<div class="card text-center" style="width: 50%">
+    <div class="card-header">
+        Ajouter un nouveau film
+    </div>
+    <div class="card-body">
+        <form action="/film/save" method="post">
+            <div class="row">
+                <div class="col-md-4 p-3">
+                    <input type="text" class="form-control" placeholder="Référence" name="ref">
+                </div>
+                <div class="col-md-8 p-3">
+                    <input type="text" class="form-control" placeholder="Titre" name="titre">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col p-3">
+                    <input type="text" class="form-control" placeholder="Description" name="desc">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1 p-3">
+                    Poster
+                </div>
+                <div class="col-md-11 p-3">
+                    <input type="file" class="form-control" name="file">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <div class="card-footer text-muted">
+        <input type="date">
+    </div>
+</div>
+
+</body>

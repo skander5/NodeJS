@@ -20,7 +20,7 @@ router.post('/findByFirstLastName', function (req, res, next) {
     if(JSON.stringify(data) === '[]')
       res.render("login.twig");
     else
-      res.redirect("/");
+      res.redirect("/?role="+data[0].role);
   });
 });
 

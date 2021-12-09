@@ -6,7 +6,8 @@ var Client = new Schema({
     nom : String,
     prenom : String,
     password : String,
-    login : String
+    login : String,
+    role : String
 });
 
 module.exports = mongoose.model("clients", Client);
