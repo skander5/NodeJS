@@ -3,12 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="bd18869f-52ee-4f28-b0a9-4c874126cd6c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/film.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/film.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/film.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/film.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/filmList.twig" beforeDir="false" afterPath="$PROJECT_DIR$/views/filmList.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/login.twig" beforeDir="false" afterPath="$PROJECT_DIR$/views/login.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/listReservation.twig" beforeDir="false" afterPath="$PROJECT_DIR$/views/listReservation.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +72,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1638901179648</updated>
-      <workItem from="1638901184989" duration="51321000" />
+      <workItem from="1638901184989" duration="66240000" />
     </task>
     <servers />
   </component>

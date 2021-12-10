@@ -7,7 +7,7 @@ var Film = new Schema({
     nbrRes : Number,
     description: String,
     img: String,
-    ref : String
+    ref : String,
 });
 
 module.exports = mongoose.model("films", Film);

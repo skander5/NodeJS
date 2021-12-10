@@ -3,13 +3,6 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
 </head>
 
-<script>
-    function onLoad() {
-        var userRole = localStorage.getItem('role');
-
-    }
-</script>
-
 <body>
 {% include 'header.html' %}
     <div class="container">
@@ -19,11 +12,11 @@
                 <div class="card" style="width: 18rem;">
                     <img class="card-img-top" src="{{ item.img }}" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">{{item.titre}} <span style="color: red">{{ item.nbrRes }} RS</span></h5>
+                        <h5 class="card-title">{{item.titre}} <span style="color: red">{{ item.nbrRes }} Places réservées</span></h5>
                         <p class="card-text">{{ item.description }}</p>
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="/film/reserver/1" class="btn btn-primary">Réserver</a>
+                                <a href="/film/reserver/{{ item.ref }}" class="btn btn-primary reserver">Réserver</a>
                             </div>
                             <div class="col-md-6">
                                 <a href="/film/delete/{{ item.ref }}" class="btn btn-danger" style="display: none">Supprimer</a>

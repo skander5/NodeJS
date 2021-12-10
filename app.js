@@ -11,6 +11,7 @@ var filmRouter = require('./routes/film');
 var app = express();
 var mongoose = require('mongoose');
 var config = require('./dataBase/mongodb.json');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'twig');
