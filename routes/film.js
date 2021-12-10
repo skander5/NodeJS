@@ -14,12 +14,13 @@ router.get('/reserver/:id', function(req, res, next) {
     var login = localStorage.getItem('login');
     console.log('login from ls : '+login);
 
+
+
         FilmClient.find({'film.ref': req.params.id, 'client.login': login}, function (err, dataFilm) {
             console.log('dataFilmClient', dataFilm);
             if(dataFilm.length == 0) {
                 Client.find({'login': login}, function (err, dataclient) {
                     client = dataclient;
-                    console.log("dataClient = "+dataclient+ " EnddataClient");
                     Film.find({'ref': req.params.id}, function (err, data) {
                         var film = new Film(data[0]);
                         film.nbrRes = data[0].nbrRes + 1;
