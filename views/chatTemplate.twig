@@ -1,0 +1,38 @@
+<head>
+    <script language="javascript" src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+</head>
+
+<body>
+{% include 'header.html' %}
+<div class="container">
+    <h1>Hello {{ data.name }}</h1>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="http://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <ul id="messages"></ul>
+    <form action="">
+        <input id="m" placeholder="Enter Chat Message..." autocomplete="off" />
+        <button>Send</button>
+    </form>
+    <script>      $(function () {
+            var socket = io();
+            $('form').submit(function(){
+                socket.emit('chat message', $('#m').val());
+                $('#m').val('');
+                return false;
+            });
+            socket.on('chat message', function(msg){
+                $('#messages').append($('<li>').text(msg));
+                window.scrollTo(0, document.body.scrollHeight);
+            });
+        });
+    </script>
+    <script>
+        var socket = io.connect('http://localhost:3000');
+        socket.on('messages',function(data){
+            $('body').append('<p>'+ data + '</p>')
+        })
+    </script>
+
+</div>
+</body>
