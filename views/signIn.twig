@@ -266,6 +266,7 @@
 <script>
     function storeLogin() {
         var login = document.getElementById("login").value;
+        console.log('llllllllllllllll',login);
         localStorage.setItem('login',login);
         document.getElementById("form_id").submit();
     }
@@ -276,16 +277,14 @@
         <h2 class="active"> Sign In </h2>
 
         <!-- Login Form -->
-        <form action="/users/findByFirstLastName" method="post" id="form_id">
-            <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
+        <form action="/users/addUser" method="post" id="form_id">
+            <input type="text" id="login" class="fadeIn second" name="nom" placeholder="nom">
+            <input type="text" id="password" class="fadeIn third" name="prenom" placeholder="prenom">
+            <input type="text" id="password" class="fadeIn third" name="login" placeholder="login">
             <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
             <input type="button" onclick="storeLogin()" class="fadeIn fourth" value="Log In">
         </form>
 
-        <!-- Remind Passowrd -->
-        <div id="formFooter">
-            <a class="underlineHover" href="/users/signIn">sign Up</a>
-    </div>
 
     </div>
 </div>

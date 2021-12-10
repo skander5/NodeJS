@@ -14,7 +14,10 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/myFilm', function(req, res, next) {
-  ClientFilm.find({'client.login': 'skd123'}, function (err, data) {
+  localStorage = new LocalStorage('./scratch');
+  var login = localStorage.getItem('login');
+  console.log("LLLOOOGIN",login);
+  ClientFilm.find({'client.login': login}, function (err, data) {
     console.log('clienttt', data[0]);
     var dataFilm = data[0];
     res.render("listReservation.twig",{data});
