@@ -1,187 +1,135 @@
-<head>
-    <script language="javascript" src="http://localhost:3000/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="http://localhost:3000/css/bootstrap.min.css"/>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        /*body { font: 13px Helvetica, Arial; }*/
-        form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 80%; }
-        form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-        form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-        #messages { list-style-type: none; margin: 0; padding: 0; }
-        #messages li { padding: 5px 10px;  display: flex;flex-wrap: nowrap;}
-        /* Chat containers */
-        .chat .container {
-            border: 2px solid #dedede;
-            background-color: #f1f1f1;
-            border-radius: 5px;
-            padding: 10px;
-            margin: 10px 0;
-        }
+<html>
 
-        /* Darker chat container */
-        .darker {
-            border-color: #ccc;
-            background-color: #ddd;
-        }
-
-        /* Clear floats */
-        .chat .container::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-
-        /* Style images */
-        .chat .container .username {
-            float: left;
-            max-width: 60px;
-            width: 100%;
-            margin-right: 20px;
-            border-radius: 80%;
-            padding: 20px 0;
-            background: lightblue;
-            text-align: center;
-        }
-        .chat .container .text-reciever {
-            padding: 10px 0;
-            background: lightblue;
-            width: 90%;
-            border-radius: 5px;
-            float: right;
-        }
-
-        .chat p {
-            margin: 0 5px;
-        }
-
-        /* Style the right image */
-        .chat .container .username.right {
-            float: right;
-            margin-left: 20px;
-            margin-right:0;
-            border-radius: 80%;
-            padding: 20px 0;
-            background: hotpink;
-            text-align: center;
-        }
-        .chat .container .text-sender {
-            padding: 10px 0;
-            background: hotpink;
-            width: 90%;
-            border-radius: 5px;
-        }
-
-        /* Style time text */
-        .chat .time-right {
-            float: right;
-            color: #aaa;
-        }
-
-        /* Style time text */
-        .chat .time-left {
-            float: left;
-            color: #999;
-        }
-        /*#messages li:nth-child(odd) { background: #eee;}*/
-        #messages { margin-bottom: 40px }
-    </style>
-</head>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script language="javascript" src="/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-</head>
-<script>
-    function rendredLogin(){
-        var userLogin = localStorage.getItem('login');
-        console.log(userLogin);
-        if(userLogin != null && userLogin != undefined) {
-            document.getElementById('hiddenLogin').style.display = "none";
-            document.getElementById('hiddenlogout').style.display = "block";
-            document.getElementById('myFilm').style.display = "block";
-            document.getElementById('listChat').style.display = "block";
-        }
-        var userRole = localStorage.getItem('role');
-        console.log('usr',userRole);
-        if(userRole == 'null' || userRole == null){
-            var url = new URL(window.location.href);
-            console.log(url.searchParams.get("role"));
-            userRole = url.searchParams.get("role");
-            localStorage.setItem('role',userRole);
-
-            var elements = document.getElementsByClassName('btn btn-primary reserver');
-            for (var i = 0; i < elements.length; i++){
-                elements[i].style.display = "none";
+<header>
+    <head>
+        <meta charset="UTF-8">
+        <script language="javascript" src="http://localhost:3000/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="http://localhost:3000/css/bootstrap.min.css"/>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            /*body { font: 13px Helvetica, Arial; }*/
+            form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 80%; }
+            form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+            form button { width: 9%; background: gold; border: none; padding: 10px; }
+            #messages { list-style-type: none; margin: 0; padding: 0; }
+            #messages li { padding: 5px 10px;  display: flex;flex-wrap: nowrap;}
+            /* Chat containers */
+            .chat .container {
+                border: 2px solid #dedede;
+                background-color: #f1f1f1;
+                border-radius: 5px;
+                padding: 10px;
+                margin: 10px 0;
             }
-        }
-        if(userRole == 'admin'){
-            document.getElementById('manageFilm').style.display = "block";
-            var elements = document.getElementsByClassName('btn btn-danger');
-            for (var i = 0; i < elements.length; i++){
-                elements[i].style.display = "block";
+
+            /* Darker chat container */
+            .darker {
+                border-color: #ccc;
+                background-color: #ddd;
             }
-        }
-    }
-    function disconnect() {
-        localStorage.removeItem('login');
-        localStorage.removeItem('role');
-    }
-</script>
-<body onload="rendredLogin()">
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: gold;">
-    <a class="navbar-brand" href="#">
-        <h1 style="color: white;text-shadow: 2px 2px 4px #000000;">CINEMA WORLD</h1>
-    </a>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/" style="font-style: oblique;font-weight: bold;">List des films</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/myFilm" style="display: none;font-style: oblique;font-weight: bold;" id="myFilm">Mes réservation</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="manageFilm" href="/film/add" style="display: none;font-style: oblique;font-weight: bold;" style="font-style: oblique;font-weight: bold;">Gestion des films</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/chat/listContact" style="display: none;font-style: oblique;font-weight: bold;" id="listChat">Chat</a>
-            </li>
+            /* Clear floats */
+            .chat .container::after {
+                content: "";
+                clear: both;
+                display: table;
+            }
 
-        </ul>
-    </div>
-    <form class="form-inline my-2 my-lg-0">
-        <a class="btn btn-outline-success my-2 my-sm-0" type="button" id="hiddenLogin" href="/users/">Login</a>
-        <a class="btn btn-outline-success my-2 my-sm-0" type="button" id="hiddenlogout" onclick="disconnect()" style="display: none" href="/">Logout</a>
-    </form>
-</nav>
-</body>
+            /* Style images */
+            .chat .container .username {
+                float: left;
+                max-width: 60px;
+                width: 100%;
+                margin-right: 20px;
+                border-radius: 80%;
+                padding: 20px 0;
+                background: lightblue;
+                text-align: center;
+            }
+            .chat .container .text-reciever {
+                padding: 10px 0;
+                background: lightblue;
+                width: 90%;
+                border-radius: 5px;
+                float: right;
+            }
 
-</html>
-<body>
-<div class="container">
-    <h2 style="color: rgb(130, 224, 255)" id="greetingChat"></h2>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!--    <script src="http://cdn.socket.io/socket.io-1.2.0.js"></script>-->
-   <!-- <script src="/socket.io/socket.io.js"></script>-->
-    <script src="http://localhost:3001/socket.io/socket.io.js"></script>
+            .chat p {
+                margin: 0 5px;
+            }
 
-<!--    <script src="http://cdn.socket.io/socket.io-1.2.0.js"></script>-->
+            /* Style the right image */
+            .chat .container .username.right {
+                float: right;
+                margin-left: 20px;
+                margin-right:0;
+                border-radius: 80%;
+                padding: 20px 0;
+                background: hotpink;
+                text-align: center;
+            }
+            .chat .container .text-sender {
+                padding: 10px 0;
+                background: hotpink;
+                width: 90%;
+                border-radius: 5px;
+            }
 
+            /* Style time text */
+            .chat .time-right {
+                float: right;
+                color: #aaa;
+            }
 
+            /* Style time text */
+            .chat .time-left {
+                float: left;
+                color: #999;
+            }
+            /*#messages li:nth-child(odd) { background: #eee;}*/
+            #messages { margin-bottom: 40px }
+        </style>
+    </head>
+    <script>
+        $( document ).ready(function() {
 
-    <ul id="messages" class="chat"></ul>
-    <ul id="typing">
-        <li id="userTyping" style="display: none"><span id="loginUserTyping"></span>is typing message </li>
-    </ul>
+            var userLogin = localStorage.getItem('login');
+            console.log(userLogin);
+            if (userLogin != null && userLogin != undefined) {
+                document.getElementById('hiddenLogin').style.display = "none";
+                document.getElementById('hiddenlogout').style.display = "block";
+                document.getElementById('myFilm').style.display = "block";
+                document.getElementById('listChat').style.display = "block";
 
-    <form action="">
-        <input id="m" placeholder="Enter Chat Message..." autocomplete="off" />
-        <button>Send</button>
-    </form>
-</div>
+                var userRole = localStorage.getItem('role');
+                console.log('usr', userRole);
+                if (userRole == 'null' || userRole == null) {
+                    var url = new URL(window.location.href);
+                    console.log(url.searchParams.get("role"));
+                    userRole = url.searchParams.get("role");
+                    localStorage.setItem('role', userRole);
+
+                    var elements = document.getElementsByClassName('btn btn-primary reserver');
+                    for (var i = 0; i < elements.length; i++) {
+                        elements[i].style.display = "none";
+                    }
+                }
+                if (userRole == 'admin') {
+                    document.getElementById('manageFilm').style.display = "block";
+                    var elements = document.getElementsByClassName('btn btn-danger');
+                    for (var i = 0; i < elements.length; i++) {
+                        elements[i].style.display = "block";
+                    }
+                }
+            }
+
+            function disconnect() {
+                localStorage.removeItem('login');
+                localStorage.removeItem('role');
+            }
+        });
+    </script>
     <script>      $(function () {
         var url_string = window.location.href; //window.location.href
         var url = new URL(url_string);
@@ -210,9 +158,9 @@
             }
             else {
                 if($("#m").val() === "" ){
-                html1 = login1 + " ";
-                // $('#loginUserTyping').text(html1) ;
-                $("#userTyping").css({'display': 'none'});
+                    html1 = login1 + " ";
+                    // $('#loginUserTyping').text(html1) ;
+                    $("#userTyping").css({'display': 'none'});
                 }
             }
 
@@ -222,8 +170,8 @@
         socket.on('text typing',function (login1){
             if(login1 === login){
 
-               // html1 = login1+" is typing message";
-               // $('#typing').append($('<li id="userTyping">').html(html1));
+                // html1 = login1+" is typing message";
+                // $('#typing').append($('<li id="userTyping">').html(html1));
                 $("#userTyping").css({'display':'none'});
             }
             else {
@@ -256,9 +204,56 @@
         });
     });
     </script>
-    <script>
-      //  var socket = io('http://localhost:3001');
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: gold;">
+    <a class="navbar-brand" href="#">
+        <h1 style="color: white;text-shadow: 2px 2px 4px #000000;">CINEMA WORLD</h1>
+    </a>
 
-    </script>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/" style="font-style: oblique;font-weight: bold;">List des films</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/myFilm" style="display: none;font-style: oblique;font-weight: bold;" id="myFilm">Mes réservation</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="manageFilm" href="/film/add" style="display: none;font-style: oblique;font-weight: bold;" style="font-style: oblique;font-weight: bold;">Gestion des films</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/chat/listContact" style="display: none;font-style: oblique;font-weight: bold;" id="listChat">Chat</a>
+            </li>
 
+        </ul>
+    </div>
+
+        <a class="btn btn-outline-success my-2 my-sm-0" type="button" id="hiddenLogin" href="/users/">Login</a>
+        <a class="btn btn-outline-success my-2 my-sm-0" type="button" id="hiddenlogout" onclick="disconnect()" style="display: none" href="/">Logout</a>
+
+</nav>
+</header>
+
+<body>
+<div class="container">
+    <h2 style="color: rgb(130, 224, 255)" id="greetingChat"></h2>
+
+<!--    <script src="http://cdn.socket.io/socket.io-1.2.0.js"></script>-->
+   <!-- <script src="/socket.io/socket.io.js"></script>-->
+    <script src="http://localhost:3001/socket.io/socket.io.js"></script>
+
+<!--    <script src="http://cdn.socket.io/socket.io-1.2.0.js"></script>-->
+
+
+
+    <ul id="messages" class="chat"></ul>
+    <ul id="typing">
+        <li id="userTyping" style="display: none"><span id="loginUserTyping"></span>is typing message </li>
+    </ul>
+
+    <form action="">
+        <input id="m" placeholder="Enter Chat Message..." autocomplete="off" />
+        <button>Send</button>
+    </form>
+</div>
 </body>
+</html>
