@@ -7,7 +7,7 @@
 {% include 'header.html' %}
 <div class="container">
     <div class="row align-items-center">
-        {% for item in data %}
+        {% for item in users %}
             <div class="col-sm">
                 <div class="card" style="width: 18rem;">
                     <img class="card-img-top" src="{{ item.login }}" alt="Card image cap">
@@ -16,7 +16,7 @@
                        {# <p class="card-text">{{ item.description }}</p>#}
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="/chat/chatPage" class="btn btn-primary reserver">Contacter</a>
+                                <a href="/chat/chatPage/{{ item.login }}" class="btn btn-primary reserver">Contacter</a>
                             </div>
                             {#<div class="col-md-6">
                                 <a href="#" class="btn btn-danger" style="display: none">Supprimer</a>
